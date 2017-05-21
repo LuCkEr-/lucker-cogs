@@ -1,7 +1,7 @@
 {
     "AUTHOR" : "LuCkEr-",
-    "INSTALL_MSG" : "Installing LMusic",
-    "NAME" : "LMusic",
-    "SHORT" : "LuCkEr's custom music cog",
-    "DESCRIPTION" : "LuCkEr's custom music cog. This is based on the original Music cog"
+    "INSTALL_MSG" : "You'r about to install LuCkEr's Cogs",
+    "NAME" : "LuCkEr-'s Cogs",
+    "SHORT" : "This contains modification made by LuCkEr.",
+    "DESCRIPTION" : "This contains modification made by LuCkEr. https://gitlab.lucker.xyz/LuCkEr/LuCkEr-cogs"
 }
