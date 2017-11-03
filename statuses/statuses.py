@@ -32,7 +32,7 @@ class Statuses:
                     'with Me, Myself & I', 'in #villains-cave', 'with Planes',
                     'with {}'.format(str(usernames[
                                      randint(0, len(set(usernames)) - 1)])),
-                    'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes'
+                    'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes',
                     'lucker.xyz', 'slidenshine.net'
                 ]
 
