@@ -15,18 +15,30 @@ class Statuses:
     async def display_status(self):
         while self == self.bot.get_cog('Statuses'):
             try:
+                usernames = []
+                users = self.bot.get_all_members()
+                for user in users:
+                    if user.nick is not "None":
+                        usernames.append(user.nick)
+                    else:
+                        usernames.append(user.name)
+
                 statuses = [
                     '!help',
                     'òwó', 'o~o', '>~<', 'xdddddddd', ';_;', '-_-', '._.', ':/',
                     'in {} Servers'.format(len(self.bot.servers)),
-                    'with {} Users'.format(str(len(set(self.bot.get_all_members())))),
+                    'with {} Users'.format(
+                        str(len(set(self.bot.get_all_members())))),
                     'with Me, Myself & I', 'in #villains-cave', 'with Planes',
-                    'with {}'.format(str(self.bot.get_all_members()[
-                                     randint(0, len(set(self.bot.get_all_members()))-1)])),
+                    'with {}'.format(str(usernames[
+                                     randint(0, len(set(usernames)) - 1)])),
+                    'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes'
                     'lucker.xyz', 'slidenshine.net'
                 ]
-                status = randint(0, len(statuses)-1)
+
+                status = randint(0, len(statuses) - 1)
                 new_status = statuses[status]
+
                 await self.bot.change_presence(game=discord.Game(name=new_status))
             except:
                 pass
