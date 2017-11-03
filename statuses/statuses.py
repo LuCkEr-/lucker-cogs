@@ -17,7 +17,7 @@ class Statuses:
             try:
                 statuses = [
                     '!help',
-                    'òwó', 'o~o', '>~<', 'xdddddddd', ';_;', '-_-'. '._.', ':/',
+                    'òwó', 'o~o', '>~<', 'xdddddddd', ';_;', '-_-', '._.', ':/',
                     'in {} Servers'.format(len(self.bot.servers)),
                     'with {} Users'.format(str(len(set(self.bot.get_all_members())))),
                     'with Me, Myself & I', 'in #villains-cave', 'with Planes',
