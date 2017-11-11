@@ -313,21 +313,21 @@ class Streams:
             if mention_type == "here":
                 self.settings[server.id]["MENTION"] = "@" + mention_type
                 await self.bot.say("When a stream is online @\u200b{} will be "
-                                           "mentioned.".format(mention_type))
+                                   "mentioned.".format(mention_type))
             else:
                 valid = False
                 mentionable = False
-            for role in server.roles:
-                if mention_type in role.name:
+                for role in server.roles:
+                    if mention_type in role.name:
                         valid = True
                         if role.mentionable:
                             mentionable = True
 
                 if valid:
                     if mentionable:
-                    self.settings[server.id]["MENTION"] = "@" + mention_type
-                    await self.bot.say("When a stream is online @\u200b{} will be "
-                                    "mentioned.".format(mention_type))
+                        self.settings[server.id]["MENTION"] = "@" + mention_type
+                        await self.bot.say("When a stream is online @\u200b{} will be "
+                                           "mentioned.".format(mention_type))
                     else:
                         await self.bot.say("Role @\u200b{} can't be mentioned. Check role settings.".format(mention_type))
                 else:
