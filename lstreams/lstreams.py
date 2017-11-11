@@ -348,7 +348,7 @@ class Streams:
 
         if stream_role != "none":
             for role in server.roles:
-                if stream_role in role:
+                if stream_role == role:
                     self.settings[server.id]["AUTOROLE"] = role.id
                     await self.bot.say("Streamsers will be automatically assigned the {} role.".format(role.name))
         elif stream_role == "none":
