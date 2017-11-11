@@ -310,11 +310,29 @@ class Streams:
         server = ctx.message.server
 
         if mention_type != "none":
+            if mention_type == "here":
+                self.settings[server.id]["MENTION"] = "@" + mention_type
+                await self.bot.say("When a stream is online @\u200b{} will be "
+                                           "mentioned.".format(mention_type))
+            else:
+                isValid = False
+                isMentionable = False
             for role in server.roles:
                 if mention_type in role.name:
+                        isValid = True
+                        if role.mentionable:
+                            isMentionable = True
+
+                if isValid:
+                    if isMentionable:
                     self.settings[server.id]["MENTION"] = "@" + mention_type
                     await self.bot.say("When a stream is online @\u200b{} will be "
                                     "mentioned.".format(mention_type))
+                    else:
+                        await self.bot.say("Role @\u200b{} can't be mentioned. Check role settings.".format(mention_type))
+                else:
+                    await self.bot.say("@\u200b{} isn't a valid mentionable role.".format(mention_type))
+
         elif mention_type == "none":
             self.settings[server.id]["MENTION"] = ""
             await self.bot.say("Mentions disabled.")
