@@ -598,6 +598,13 @@ class Streams:
                                 await self.bot.remove_roles(member, streamRole)
                             except:
                                 print("Permission denied when removing role from user")
+                    elif isStreaming:
+                        print("Removing {} from {}".format(streamRole.name, member.name))
+                        try:
+                            await self.bot.remove_roles(member, streamRole)
+                        except:
+                            print("Permission denied when removing role from user")
+
 
             save = False
 
