@@ -560,6 +560,24 @@ class Streams:
                   "{}".format(e))
 
         while self == self.bot.get_cog("Streams"):
+            # Check all the online users if any of them are streaming
+            for server in self.bot.servers:
+                streamRole = False
+
+                # Check servers roles for a streaming role
+                for role in server.roles
+                    if role.name.lower() == "streaming"
+                        streamRole = True
+                        break
+
+                # Skip servers which dont have the streaming role
+                if not streamRole:
+                    continue
+
+                # Check if any of the users in the server are streaming
+                for member in server.members:
+                    print(list(member))
+
             save = False
 
             streams = ((self.twitch_streams,  self.twitch_online),
