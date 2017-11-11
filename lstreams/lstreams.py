@@ -342,6 +342,25 @@ class Streams:
 
     @streamset.command(pass_context=True, no_pm=True)
     @checks.admin()
+    async def autorole(self, ctx, *, stream_role: str):
+        """Sets the role which to assing streamers while they are streaming"""
+        server = ctx.message.server
+
+        if stream_role != "none":
+            for role in server.roles:
+                if stream_role in role:
+                    self.settings[server.id]["AUTOROLE"] = role.id
+                    await self.bot.say("Streamsers will be automatically assigned the {} role.".format(role.name))
+        elif stream_role == "none":
+            self.settings[server.id]["AUTOROLE"] = ""
+            await self.bot.say("Autorole disabled.")
+        else:
+            await self.bot.send_cmd_help(ctx)
+
+        dataIO.save_json("data/streams/settings.json", self.settings)
+
+    @streamset.command(pass_context=True, no_pm=True)
+    @checks.admin()
     async def autodelete(self, ctx):
         """Toggles automatic notification deletion for streams that go offline"""
         server = ctx.message.server
@@ -580,46 +599,54 @@ class Streams:
         while self == self.bot.get_cog("Streams"):
             # Check all the online users if any of them are streaming
             for server in self.bot.servers:
-                streamRole = ""
+                auto_role = self.settings.get(server.id, {}).get("AUTOROLE", "")
+
+                if not auto_role:
+                    continue
+
+                stream_role = ""
 
                 # Check servers roles for a streaming role
                 for role in server.roles:
-                    if role.name.lower() == "streaming":
-                        streamRole = role
+                    if role.id == auto_role:
+                        stream_role = role
                         break
 
                 # Skip servers which dont have the streaming role
-                if not streamRole:
+                if not stream_role:
                     continue
 
                 # Check if any of the users in the server are streaming
                 for member in server.members:
                     # Check if the user already has the role
-                    isStreaming = False
+                    streaming = False
                     for role in member.roles:
-                        if role.name.lower() == "streaming":
-                            isStreaming = True
+                        if role.id == auto_role:
+                            streaming = True
                             break
 
                     # Check if a user is streaming
                     if member.game is not None:
-                        if member.game.type == 1 and not isStreaming:
+                        if member.game.type == 1 and not streaming:
                             # Set the members role
-                            print("Adding {} to {}".format(streamRole.name, member.name))
+                            print("Adding {} to {}".format(
+                                stream_role.name, member.name))
                             try:
-                                await self.bot.add_roles(member, streamRole)
+                                await self.bot.add_roles(member, stream_role)
                             except:
                                 print("Permission denied when adding role to user")
-                        elif member.game.type != 1 and isStreaming:
-                            print("Removing {} from {}".format(streamRole.name, member.name))
+                        elif member.game.type != 1 and streaming:
+                            print("Removing {} from {}".format(
+                                stream_role.name, member.name))
                             try:
-                                await self.bot.remove_roles(member, streamRole)
+                                await self.bot.remove_roles(member, stream_role)
                             except:
                                 print("Permission denied when removing role from user")
-                    elif isStreaming:
-                        print("Removing {} from {}".format(streamRole.name, member.name))
+                    elif streaming:
+                        print("Removing {} from {}".format(
+                            stream_role.name, member.name))
                         try:
-                            await self.bot.remove_roles(member, streamRole)
+                            await self.bot.remove_roles(member, stream_role)
                         except:
                             print("Permission denied when removing role from user")
 
