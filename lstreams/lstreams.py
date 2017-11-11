@@ -562,12 +562,12 @@ class Streams:
         while self == self.bot.get_cog("Streams"):
             # Check all the online users if any of them are streaming
             for server in self.bot.servers:
-                streamRole = False
+                streamRole = ""
 
                 # Check servers roles for a streaming role
                 for role in server.roles:
                     if role.name.lower() == "streaming":
-                        streamRole = True
+                        streamRole = role
                         break
 
                 # Skip servers which dont have the streaming role
@@ -576,7 +576,27 @@ class Streams:
 
                 # Check if any of the users in the server are streaming
                 for member in server.members:
-                    print("{} is {}".format(member.name, member.game))
+                    # Check if the user already has the role
+                    isStreaming = False
+                    for role in member.roles:
+                        if role.name.lower() == "streaming":
+                            isStreaming = True
+                            break
+
+                    # Check if a user is streaming
+                    if member.game.type == 1 and not isStreaming:
+                        # Set the members role
+                        print("Adding {} to {}".format(streamRole.name, member.name))
+                        try:
+                            await self.bot.add_roles(member, streamRole)
+                        except self.bot.Forbidden:
+                            print("Permission denied when adding role to user")
+                    elif isStreaming:
+                        print("Removing {} from {}".format(streamRole.name, member.name))
+                        try:
+                            await self.bot.remove_roles(member, streamRole)
+                        except self.bot.Forbidden:
+                            print("Permission denied when removing role from user")
 
             save = False
 
