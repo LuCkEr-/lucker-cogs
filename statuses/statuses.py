@@ -18,7 +18,7 @@ class Statuses:
                 usernames = []
                 users = self.bot.get_all_members()
                 for user in users:
-                    if user.nick is not "None":
+                    if user.nick != "None":
                         usernames.append(user.nick)
                     else:
                         usernames.append(user.name)
