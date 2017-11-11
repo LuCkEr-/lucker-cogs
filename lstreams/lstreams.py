@@ -590,13 +590,13 @@ class Streams:
                             print("Adding {} to {}".format(streamRole.name, member.name))
                             try:
                                 await self.bot.add_roles(member, streamRole)
-                            except self.bot.Forbidden:
+                            except:
                                 print("Permission denied when adding role to user")
                         elif isStreaming:
                             print("Removing {} from {}".format(streamRole.name, member.name))
                             try:
                                 await self.bot.remove_roles(member, streamRole)
-                            except self.bot.Forbidden:
+                            except:
                                 print("Permission denied when removing role from user")
 
             save = False
