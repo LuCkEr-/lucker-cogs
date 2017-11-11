@@ -610,7 +610,7 @@ class Streams:
                                 await self.bot.add_roles(member, streamRole)
                             except:
                                 print("Permission denied when adding role to user")
-                        elif isStreaming:
+                        elif member.game.type != 1 and isStreaming:
                             print("Removing {} from {}".format(streamRole.name, member.name))
                             try:
                                 await self.bot.remove_roles(member, streamRole)
