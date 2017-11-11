@@ -576,7 +576,7 @@ class Streams:
 
                 # Check if any of the users in the server are streaming
                 for member in server.members:
-                    print(list(member))
+                    print(member.status)
 
             save = False
 
