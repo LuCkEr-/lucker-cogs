@@ -306,11 +306,11 @@ class Streams:
     async def mention(self, ctx, *, mention_type : str):
         """Sets mentions for stream alerts
 
-        Types: everyone, here, Twitch, none"""
+        Types: everyone, here, twitch, none"""
         server = ctx.message.server
         mention_type = mention_type.lower()
 
-        if mention_type in ("everyone", "here", "Twitch"):
+        if mention_type in ("everyone", "here", "twitch"):
             self.settings[server.id]["MENTION"] = "@" + mention_type
             await self.bot.say("When a stream is online @\u200b{} will be "
                                "mentioned.".format(mention_type))
