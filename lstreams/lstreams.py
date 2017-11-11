@@ -584,19 +584,20 @@ class Streams:
                             break
 
                     # Check if a user is streaming
-                    if member.game.type == 1 and not isStreaming:
-                        # Set the members role
-                        print("Adding {} to {}".format(streamRole.name, member.name))
-                        try:
-                            await self.bot.add_roles(member, streamRole)
-                        except self.bot.Forbidden:
-                            print("Permission denied when adding role to user")
-                    elif isStreaming:
-                        print("Removing {} from {}".format(streamRole.name, member.name))
-                        try:
-                            await self.bot.remove_roles(member, streamRole)
-                        except self.bot.Forbidden:
-                            print("Permission denied when removing role from user")
+                    if member.game is not None:
+                        if member.game.type == 1 and not isStreaming:
+                            # Set the members role
+                            print("Adding {} to {}".format(streamRole.name, member.name))
+                            try:
+                                await self.bot.add_roles(member, streamRole)
+                            except self.bot.Forbidden:
+                                print("Permission denied when adding role to user")
+                        elif isStreaming:
+                            print("Removing {} from {}".format(streamRole.name, member.name))
+                            try:
+                                await self.bot.remove_roles(member, streamRole)
+                            except self.bot.Forbidden:
+                                print("Permission denied when removing role from user")
 
             save = False
 
