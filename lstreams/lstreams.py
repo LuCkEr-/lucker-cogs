@@ -566,7 +566,7 @@ class Streams:
 
                 # Check servers roles for a streaming role
                 for role in server.roles:
-                    if role.name.lower() == "streaming"
+                    if role.name.lower() == "streaming":
                         streamRole = True
                         break
 
