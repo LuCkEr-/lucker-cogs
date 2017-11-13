@@ -314,20 +314,26 @@ class Streams:
                 self.settings[server.id]["MENTION"] = "@" + mention_type
                 await self.bot.say("When a stream is online @\u200b{} will be "
                                    "mentioned.".format(mention_type))
+            elif mention_type == "everyone":
+                self.settings[server.id]["MENTION"] = "@" + mention_type
+                await self.bot.say("When a stream is online @\u200b{} will be "
+                                   "mentioned.".format(mention_type))
             else:
                 valid = False
                 mentionable = False
+                mention_role = ""
                 for role in server.roles:
                     if mention_type in role.name:
                         valid = True
                         if role.mentionable:
                             mentionable = True
+                            mention_role = role
 
                 if valid:
                     if mentionable:
-                        self.settings[server.id]["MENTION"] = "@" + mention_type
+                        self.settings[server.id]["MENTION"] = mention_role.id
                         await self.bot.say("When a stream is online @\u200b{} will be "
-                                           "mentioned.".format(mention_type))
+                                           "mentioned.".format(mention_role.mention))
                     else:
                         await self.bot.say("Role @\u200b{} can't be mentioned. Check role settings.".format(mention_type))
                 else:
@@ -686,7 +692,15 @@ class Streams:
                             channel = self.bot.get_channel(channel_id)
                             if channel is None:
                                 continue
+
                             mention = self.settings.get(channel.server.id, {}).get("MENTION", "")
+                            if mention:
+                                if mention not in ("everyone", "here"):
+                                    for role in channel.server.roles:
+                                        if role.id == mention:
+                                            mention = role.mention
+                                            break
+
                             can_speak = channel.permissions_for(channel.server.me).send_messages
                             message = mention + " {} is live!".format(stream["NAME"])
                             if channel and can_speak:
