@@ -35,17 +35,19 @@ class Statuses:
                     'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes',
                     'lucker.xyz', 'slidenshine.net',
                     'For I have ascended', 'And I am born anew',
-                    'Only cum inside anime girls',
+                    'Anime is ruining us',
                     'Respecting womens rights', 'I am a nice guy',
-                    'Go back to your own country', 'Don\'t tread on me',
-                    'Women are just as smart as men xdd',
+                    'Deport minorities', 'Don\'t tread on me',
+                    '>Women',
                     'How do you like them apples',
                     'I can outlive you',
-                    'Making creampies without cream',
-                    '>whiteguys', 'First you lube then you glue',
-                    'Going balls deep was never easy', 'Try murdering a cow',
-                    'Don\'t let him fool you', 'Read a wikipedia page', 'Wikileaks will fuck you up',
-                    'Choking on the blue pill', 'Advertise this bot to other servers'
+                    'Making creampies w/o cream',
+                    '>whiteguys', 'Console masterrace',
+                    'Misogyny is the answer', 'Try murdering a cow',
+                    'Don\'t let him fool you', 'Read a wikipedia page', 'Wikileaks will fuck you ↑',
+                    'Choking on the blue pill', 'Traps are gay',
+                    'Beating a nerd to death',
+                    'GNU/Linux'
                 ]
 
                 status = randint(0, len(statuses) - 1)
