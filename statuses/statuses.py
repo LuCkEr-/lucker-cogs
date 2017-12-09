@@ -33,7 +33,21 @@ class Statuses:
                     'with {}'.format(str(usernames[
                                      randint(0, len(set(usernames)) - 1)])),
                     'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes',
-                    'lucker.xyz', 'slidenshine.net'
+                    'lucker.xyz', 'slidenshine.net',
+                    'For I have ascended', 'And I am born anew',
+                    'Anime is ruining us',
+                    'Respecting womens rights', 'I am a nice guy',
+                    'Deport minorities', 'Don\'t tread on me',
+                    '>Women',
+                    'How do you like them apples',
+                    'I can outlive you',
+                    'Making creampies w/o cream',
+                    '>whiteguys', 'Console masterrace',
+                    'Misogyny is the answer', 'Try murdering a cow',
+                    'Don\'t let him fool you', 'Read a wikipedia page', 'Wikileaks will fuck you ↑',
+                    'Choking on the blue pill', 'Traps are gay',
+                    'Beating a nerd to death',
+                    'GNU/Linux'
                 ]
 
                 status = randint(0, len(statuses) - 1)
