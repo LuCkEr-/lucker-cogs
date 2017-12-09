@@ -2899,11 +2899,11 @@ class Tracking:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
-        map_image_url = 'http:{}'.format(map_image[0])
         print(beatmap_url)
+        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
         print(map_image)
         print(map_image[0])
+        map_image_url = 'http:{}'.format(map_image[0])
         em.set_thumbnail(url=map_image_url)
         em.set_author(name="New #{} for {} in {}".format(top_play_num, new_user_info['username'], gamemode), icon_url = profile_url, url = user_url)
 
