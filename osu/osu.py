@@ -2902,7 +2902,7 @@ class Tracking:
         map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
         if map_image:
             map_image_url = 'http:{}'.format(map_image[0])
-        else
+        else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         em.set_thumbnail(url=map_image_url)
         em.set_author(name="New #{} for {} in {}".format(top_play_num, new_user_info['username'], gamemode), icon_url = profile_url, url = user_url)
