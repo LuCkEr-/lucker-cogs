@@ -2900,6 +2900,7 @@ class Tracking:
         # grab beatmap image
         soup = await get_web(beatmap_url)
         print(beatmap_url)
+        print(soup)
         map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
         print(map_image)
         print(map_image[0])
