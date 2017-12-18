@@ -35,7 +35,7 @@ class Statuses:
                     'Skrrt', 'Mans not hot', 'Smoke trees', 'That girl is uckers', 'Ive got the sauce', 'no ketchup', 'just sauce', 'raw sauce', 'The thing goes',
                     'lucker.xyz', 'slidenshine.net',
                     'For I have ascended', 'And I am born anew',
-                    'Anime is ruining us',
+                    'Anime is ruining us', 'Anime was a mistake',
                     'Respecting womens rights', 'I am a nice guy',
                     'Deport minorities', 'Don\'t tread on me',
                     '>Women',
