@@ -740,28 +740,28 @@ class Osu:
                 gamemode = 0
 
         try:
-            print("get_user")
-            print("username: " + username)
-            print("gamemode: {}".format(gamemode))
+            #print("get_user")
+            #print("username: " + username)
+            #print("gamemode: {}".format(gamemode))
             userinfo = list(await get_user(key, api, username, gamemode))
-            print("userinfo: {}".format(len(userinfo)))
-            print("end get_user")
+            #print("userinfo: {}".format(len(userinfo)))
+            #print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
-                print("get_user_best")
-                print("username: " + username)
-                print("gamemode: {}".format(gamemode))
+                #print("get_user_best")
+                #print("username: " + username)
+                #print("gamemode: {}".format(gamemode))
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
-                print("userbest: {}".format(len(userbest)))
-                print("end get_user_best")
+                #print("userbest: {}".format(len(userbest)))
+                #print("end get_user_best")
                 web = False
             else:
-                print("get_user_recent")
-                print("username: " + username)
-                print("gamemode: {}".format(gamemode))
+                #print("get_user_recent")
+                #print("username: " + username)
+                #print("gamemode: {}".format(gamemode))
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
-                print("userrecent: {}".format(len(userrecent)))
-                print("end get_user_recent")
+                #print("userrecent: {}".format(len(userrecent)))
+                #print("end get_user_recent")
         except:
             await self.bot.say("Error. Please try again later.")
             return
@@ -783,17 +783,26 @@ class Osu:
                 # get best plays map information and scores, assume length is self.osu_settings['num_best_plays']
                 best_beatmaps = []
                 best_acc = []
-
+                print("get_beatmap")
                 beatmap = list(await get_beatmap(key, api, beatmap_id=userbest[0]['beatmap_id']))[0]
+                print("beatmap: {}".format(beatmap))
+                print("end get_beatmap")
                 best_beatmaps = [beatmap]
                 best_acc = [calculate_acc(userbest[0], gamemode)]
                 score_num = userbest[0]['index']
 
+                print("_get_user_top")
                 msg, embed = await self._get_user_top(
                     ctx, api, userinfo, userbest, best_beatmaps, best_acc, gamemode, score_num = score_num, web = web)
+                print("end _get_user_top")
             else:
                 userrecent = userrecent[0]
+                print("userrecent: {}".format(userrecent))
+                print("_get_recent")
                 msg, embed = await self._get_recent(ctx, api, userinfo, userrecent, gamemode)
+                print("msg: {}".format(msg))
+                print("embed: {}".format(embed))
+                print("end _get_recent")
         except:
             await self.bot.say("**`{}` was not found or no recent plays in `{}`.**(exception 2)".format(username, get_gamemode(gamemode)))
             return
