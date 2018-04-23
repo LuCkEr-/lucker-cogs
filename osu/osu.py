@@ -3499,11 +3499,11 @@ async def get_user(key, api:str, user_id, mode, session = None, no_cache = False
 
     print("key: " + key)
     print("api: " + api)
-    print("user_id" + user_id)
+    print("user_id: " + user_id)
     print("mode: " + mode)
     #print("limit: " + limit)
-    print("session: " + session)
-    print("no_cache: " + no_cache)
+    #print("session: " + session)
+    #print("no_cache: " + no_cache)
 
     url_params = []
     url_params.append(parameterize_key(key))
@@ -3548,7 +3548,7 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     print("api: " + api)
     print("user_id: " + user_id)
     print("mode: " + mode)
-    print("session: " + session)
+    #print("session: " + session)
 
     url_params = []
 
