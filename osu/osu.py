@@ -3509,7 +3509,8 @@ async def get_user(key, api:str, user_id, mode, session = None, no_cache = False
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
-    print("url_params" + url_params)
+    for p in url_params: print p
+    #print("url_params" + url_params)
     url = build_request(url_params, "https://{}/api/get_user?".format(api))
     print("url: " + url)
     print("===end get_user===")
@@ -3555,7 +3556,8 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
-    print("url_params: " + url_params)
+    #print("url_params: " + url_params)
+    for p in url_params: print p
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
     print("url: " + url)
     print("===end get_user_recent===")
