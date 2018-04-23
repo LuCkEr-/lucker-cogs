@@ -3524,7 +3524,7 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     print("===get_user_recent===")
     print("key: " + key)
     print("api: " + api)
-    print("user_id" + user_id)
+    print("user_id: " + user_id)
     print("mode: " + mode)
     print("session: " + session)
 
@@ -3533,9 +3533,9 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
-    print(url_params)
+    print("url_params: " + url_params)
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
-    print(url)
+    print("url: " + url)
     return await fetch(url, session)
 
 async def fetch(url, session):
