@@ -744,7 +744,7 @@ class Osu:
             print("username: " + username)
             print("gamemode: {}".format(gamemode))
             userinfo = list(await get_user(key, api, username, gamemode))
-            print("userinfo: {}".format(userinfo))
+            print("userinfo: {}".format(len(userinfo)))
             print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
@@ -752,7 +752,7 @@ class Osu:
                 print("username: " + username)
                 print("gamemode: {}".format(gamemode))
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
-                print("userbest: {}".format(userbest))
+                print("userbest: {}".format(len(userbest)))
                 print("end get_user_best")
                 web = False
             else:
@@ -760,7 +760,7 @@ class Osu:
                 print("username: " + username)
                 print("gamemode: {}".format(gamemode))
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
-                print("userrecent: {}".format(userrecent))
+                print("userrecent: {}".format(len(userrecent)))
                 print("end get_user_recent")
         except:
             await self.bot.say("Error. Please try again later.")
