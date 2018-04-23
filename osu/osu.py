@@ -3491,16 +3491,28 @@ async def get_scores(key, api:str, beatmap_id, user_id, mode, session = None):
     return await fetch(url, session)
 
 async def get_user(key, api:str, user_id, mode, session = None, no_cache = False):
+    print("===get_user===")
     if not no_cache:
         userinfo = await get_user_db(user_id, mode)
         if userinfo:
             return userinfo
 
+    print("key: " + key)
+    print("api: " + api)
+    print("user_id" + user_id)
+    print("mode: " + mode)
+    #print("limit: " + limit)
+    print("session: " + session)
+    print("no_cache: " + no_cache)
+
     url_params = []
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
+    print("url_params" + url_params)
     url = build_request(url_params, "https://{}/api/get_user?".format(api))
+    print("url: " + url)
+    print("===end get_user===")
     return await fetch(url, session)
 
 async def get_user_best(key, api:str, user_id, mode, limit, session = None, no_cache = False):
