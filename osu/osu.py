@@ -14,6 +14,7 @@ import collections
 import numpy as np
 import matplotlib as mpl
 import random, time, datetime, json
+import json
 mpl.use('Agg') # for non gui
 from PIL import Image
 from threading import Thread
@@ -1335,10 +1336,10 @@ class Osu:
         # grab beatmap image
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(map_image))
-        if map_image:
-            map_image_url = 'http:{}'.format(map_image[0])
+        if map_image['covers']['list@2x']:
+            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
@@ -1571,7 +1572,8 @@ class Osu:
 
         if suggest_list:
             beatmap_id, mods = random.choice(suggest_list)
-            beatmap_url = 'https://osu.ppy.sh/b/{}'.format(beatmap_id)
+            #beatmap_url = 'https://osu.ppy.sh/b/{}'.format(beatmap_id)
+            beatmap_url = 'https://osu.ppy.sh/beatmapsets/{}'.format(beatmap_id)
             beatmap = await get_beatmap(key, self.osu_settings["type"]["default"], beatmap_id)
             await self.disp_beatmap(ctx.message, beatmap, beatmap_url, mods=mods, username = ctx.message.author.name)
         else:
@@ -1933,7 +1935,8 @@ class Osu:
                                 }
                             mods = fix_mods(''.join(play['mods']))
                             beatmap_id = play['beatmap']['id']
-                            url = 'https://osu.ppy.sh/b/{}'.format(beatmap_id)
+                            #url = 'https://osu.ppy.sh/b/{}'.format(beatmap_id)
+                            url = 'https://osu.ppy.sh/beatmapsets/{}'.format(beatmap_id)
                             beatmap_info = await get_beatmap(key, self.osu_settings["type"]["default"], beatmap_id)
                             return (beatmap_info, beatmap_id, mods, url, extra_info)
 
@@ -2153,10 +2156,10 @@ class Osu:
         em.set_author(name="{} – {} by {}".format(beatmap[0]['artist'], beatmap[0]['title'], beatmap[0]['creator']), url=beatmap_url)
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(map_image))
-        if map_image:
-            map_image_url = 'http:{}'.format(map_image[0])
+        if map_image['covers']['list@2x']:
+            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
@@ -2911,10 +2914,10 @@ class Tracking:
         # grab beatmap image
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(map_image))
-        if map_image:
-            map_image_url = 'http:{}'.format(map_image[0])
+        if map_image['covers']['list@2x']:
+            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
