@@ -1334,14 +1334,16 @@ class Osu:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
-        #map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})] # just in case yaknow
-        #map_image_url = 'http:{}'.format(map_image[0]).replace(" ","%")
+        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        if map_image:
+            map_image_url = 'http:{}'.format(map_image[0])
+        else:
+            map_image_url = "https://share.lucker.xyz/img/unknown.png"
 
         em = discord.Embed(description=info, colour=server_user.colour)
         em.set_author(name="{} [{}] +{} [{}★]".format(beatmap['title'], beatmap['version'],
             fix_mods(''.join(mods)),star_str), url = beatmap_url, icon_url = profile_url)
-        #em.set_thumbnail(url=map_image_url)
-        em.set_thumbnail(url="https://share.lucker.xyz/img/unknown.png")
+        em.set_thumbnail(url=map_image_url)
         timeago = time_ago(datetime.datetime.utcnow() + datetime.timedelta(hours=8), datetime.datetime.strptime(userrecent['date'], '%Y-%m-%d %H:%M:%S'))
         em.set_footer(text = "{}Ago On osu! {} Server".format(timeago, self._get_api_name(api)))
         return (msg, em)
@@ -2147,10 +2149,12 @@ class Osu:
         em.description = desc
         em.set_author(name="{} – {} by {}".format(beatmap[0]['artist'], beatmap[0]['title'], beatmap[0]['creator']), url=beatmap_url)
         soup = await get_web(beatmap_url)
-        #map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
-        #map_image_url = 'http:{}'.format(map_image[0]).replace(" ", "%")
-        #em.set_thumbnail(url=map_image_url)
-        em.set_thumbnail(url="https://share.lucker.xyz/img/unknown.png")
+        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        if map_image:
+            map_image_url = 'http:{}'.format(map_image[0])
+        else:
+            map_image_url = "https://share.lucker.xyz/img/unknown.png"
+        em.set_thumbnail(url=map_image_url)
         if oppai_info and 'graph_url' in oppai_info:
             em.set_image(url=oppai_info['graph_url'])
 
