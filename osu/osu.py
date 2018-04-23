@@ -692,6 +692,7 @@ class Osu:
 
     # Gets the user's most recent score
     async def _process_user_recent(self, ctx, inputs):
+        print("===_process_user_recent===")
         key = self.api_keys["osu_api_key"]
         channel = ctx.message.channel
         user = ctx.message.author
@@ -739,13 +740,22 @@ class Osu:
                 gamemode = 0
 
         try:
+            print("get_user")
             userinfo = list(await get_user(key, api, username, gamemode))
+            print("userinfo: " + userinfo)
+            print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
+                print("get_user_best")
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
+                print("userbest: " + userbest)
+                print("end get_user_best")
                 web = False
             else:
+                print("get_user_recent")
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
+                print("userrecent: " + userrecent)
+                print("end get_user_recent")
         except:
             await self.bot.say("Error. Please try again later.")
             return
@@ -3536,6 +3546,7 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     print("url_params: " + url_params)
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
     print("url: " + url)
+    print("===end get_user_recent===")
     return await fetch(url, session)
 
 async def fetch(url, session):
