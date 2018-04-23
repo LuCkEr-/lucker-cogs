@@ -3494,28 +3494,48 @@ async def get_user(key, api:str, user_id, mode, session = None, no_cache = False
     return await fetch(url, session)
 
 async def get_user_best(key, api:str, user_id, mode, limit, session = None, no_cache = False):
+    print("===get_user_best===")
     if not no_cache:
         userbest = await get_user_best_db(user_id, mode, limit)
         if userbest:
             return userbest
+
+    print("key: " + key)
+    print("api: " + api)
+    print("user_id" + user_id)
+    print("mode: " + mode)
+    print("limit: " + limit)
+    print("session: " + session)
+    print("no_cache: " + no_cache)
+
 
     url_params = []
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
     url_params.append(parameterize_limit(limit))
-
+    print(url_params)
     url = build_request(url_params, "https://{}/api/get_user_best?".format(api))
+    print(url)
     return await fetch(url, session)
 
 # Returns the user's ten most recent plays.
 async def get_user_recent(key, api:str, user_id, mode, session = None):
+    print("===get_user_recent===")
+    print("key: " + key)
+    print("api: " + api)
+    print("user_id" + user_id)
+    print("mode: " + mode)
+    print("session: " + session)
+
     url_params = []
 
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
+    print(url_params)
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
+    print(url)
     return await fetch(url, session)
 
 async def fetch(url, session):
