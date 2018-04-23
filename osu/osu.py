@@ -741,18 +741,24 @@ class Osu:
 
         try:
             print("get_user")
+            print("username: " + username)
+            print("gamemode: " + gamemode)
             userinfo = list(await get_user(key, api, username, gamemode))
             print("userinfo: " + userinfo)
             print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
                 print("get_user_best")
+                print("username: " + username)
+                print("gamemode: " + gamemode)
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
                 print("userbest: " + userbest)
                 print("end get_user_best")
                 web = False
             else:
                 print("get_user_recent")
+                print("username: " + username)
+                print("gamemode: " + gamemode)
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
                 print("userrecent: " + userrecent)
                 print("end get_user_recent")
