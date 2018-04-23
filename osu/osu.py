@@ -768,7 +768,7 @@ class Osu:
         await asyncio.sleep(self.sleep_time)
 
         if not userinfo:
-            await self.bot.say("**`{}` was not found or no recent plays in `{}`.**".format(username, get_gamemode(gamemode)))
+            await self.bot.say("**`{}` was not found or no recent plays in `{}`.**(exception 1)".format(username, get_gamemode(gamemode)))
             return
 
         try:
@@ -795,7 +795,7 @@ class Osu:
                 userrecent = userrecent[0]
                 msg, embed = await self._get_recent(ctx, api, userinfo, userrecent, gamemode)
         except:
-            await self.bot.say("**`{}` was not found or no recent plays in `{}`.**".format(username, get_gamemode(gamemode)))
+            await self.bot.say("**`{}` was not found or no recent plays in `{}`.**(exception 2)".format(username, get_gamemode(gamemode)))
             return
 
         await self.bot.say(msg, embed=embed)
