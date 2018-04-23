@@ -1334,11 +1334,14 @@ class Osu:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
+        print("beatmap_url: {}".format(beatmap_url))
         map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        print("map_image: {}".format(map_image))
         if map_image:
             map_image_url = 'http:{}'.format(map_image[0])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
+        print("map_image_url: {}".format(map_image_url))
 
         em = discord.Embed(description=info, colour=server_user.colour)
         em.set_author(name="{} [{}] +{} [{}★]".format(beatmap['title'], beatmap['version'],
@@ -2149,11 +2152,14 @@ class Osu:
         em.description = desc
         em.set_author(name="{} – {} by {}".format(beatmap[0]['artist'], beatmap[0]['title'], beatmap[0]['creator']), url=beatmap_url)
         soup = await get_web(beatmap_url)
+        print("beatmap_url: {}".format(beatmap_url))
         map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        print("map_image: {}".format(map_image))
         if map_image:
             map_image_url = 'http:{}'.format(map_image[0])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
+        print("map_image_url: {}".format(map_image_url))
         em.set_thumbnail(url=map_image_url)
         if oppai_info and 'graph_url' in oppai_info:
             em.set_image(url=oppai_info['graph_url'])
@@ -2904,11 +2910,14 @@ class Tracking:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
+        print("beatmap_url: {}".format(beatmap_url))
         map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        print("map_image: {}".format(map_image))
         if map_image:
             map_image_url = 'http:{}'.format(map_image[0])
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
+        print("map_image_url: {}".format(map_image_url))
         em.set_thumbnail(url=map_image_url)
         em.set_author(name="New #{} for {} in {}".format(top_play_num, new_user_info['username'], gamemode), icon_url = profile_url, url = user_url)
 
