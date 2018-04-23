@@ -803,7 +803,8 @@ class Osu:
                 print("msg: {}".format(msg))
                 print("embed: {}".format(embed))
                 print("end _get_recent")
-        except:
+        except Exception as e:
+            print("ERROR: {}", format(e))
             await self.bot.say("**`{}` was not found or no recent plays in `{}`.**(exception 2)".format(username, get_gamemode(gamemode)))
             return
 
@@ -1360,8 +1361,8 @@ class Osu:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})] # just in case yaknow
-        map_image_url = 'http:{}'.format(map_image[0]).replace(" ","%")
+        #map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})] # just in case yaknow
+        #map_image_url = 'http:{}'.format(map_image[0]).replace(" ","%")
 
         em = discord.Embed(description=info, colour=server_user.colour)
         em.set_author(name="{} [{}] +{} [{}★]".format(beatmap['title'], beatmap['version'],
