@@ -742,25 +742,25 @@ class Osu:
         try:
             print("get_user")
             print("username: " + username)
-            print("gamemode: " + gamemode)
+            print("gamemode: {}".format(gamemode))
             userinfo = list(await get_user(key, api, username, gamemode))
-            print("userinfo: " + userinfo)
+            print("userinfo: {}".format(userinfo))
             print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
                 print("get_user_best")
                 print("username: " + username)
-                print("gamemode: " + gamemode)
+                print("gamemode: {}".format(gamemode))
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
-                print("userbest: " + userbest)
+                print("userbest: {}".format(userbest))
                 print("end get_user_best")
                 web = False
             else:
                 print("get_user_recent")
                 print("username: " + username)
-                print("gamemode: " + gamemode)
+                print("gamemode: {}".format(gamemode))
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
-                print("userrecent: " + userrecent)
+                print("userrecent: {}".format(userrecent))
                 print("end get_user_recent")
         except:
             await self.bot.say("Error. Please try again later.")
@@ -3503,10 +3503,10 @@ async def get_user(key, api:str, user_id, mode, session = None, no_cache = False
         if userinfo:
             return userinfo
 
-    print("key: " + key)
-    print("api: " + api)
-    print("user_id: " + user_id)
-    print("mode: " + mode)
+    print("key: {}".format(key))
+    print("api: {}".format(api))
+    print("user_id: {}".format(user_id))
+    print("mode: {}".format(mode))
     #print("limit: " + limit)
     #print("session: " + session)
     #print("no_cache: " + no_cache)
@@ -3518,7 +3518,7 @@ async def get_user(key, api:str, user_id, mode, session = None, no_cache = False
     for p in url_params: print(p)
     #print("url_params" + url_params)
     url = build_request(url_params, "https://{}/api/get_user?".format(api))
-    print("url: " + url)
+    print("url: {}".format(url))
     print("===end get_user===")
     return await fetch(url, session)
 
@@ -3551,10 +3551,10 @@ async def get_user_best(key, api:str, user_id, mode, limit, session = None, no_c
 # Returns the user's ten most recent plays.
 async def get_user_recent(key, api:str, user_id, mode, session = None):
     print("===get_user_recent===")
-    print("key: " + key)
-    print("api: " + api)
-    print("user_id: " + user_id)
-    print("mode: " + mode)
+    print("key: {}".format(key))
+    print("api: {}".format(api))
+    print("user_id: {}".format(user_id))
+    print("mode: {}".format(mode))
     #print("session: " + session)
 
     url_params = []
@@ -3565,7 +3565,7 @@ async def get_user_recent(key, api:str, user_id, mode, session = None):
     #print("url_params: " + url_params)
     for p in url_params: print(p)
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
-    print("url: " + url)
+    print("url: {}".format(url))
     print("===end get_user_recent===")
     return await fetch(url, session)
 
