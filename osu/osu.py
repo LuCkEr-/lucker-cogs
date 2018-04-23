@@ -692,7 +692,6 @@ class Osu:
 
     # Gets the user's most recent score
     async def _process_user_recent(self, ctx, inputs):
-        print("===_process_user_recent===")
         key = self.api_keys["osu_api_key"]
         channel = ctx.message.channel
         user = ctx.message.author
@@ -740,28 +739,13 @@ class Osu:
                 gamemode = 0
 
         try:
-            #print("get_user")
-            #print("username: " + username)
-            #print("gamemode: {}".format(gamemode))
             userinfo = list(await get_user(key, api, username, gamemode))
-            #print("userinfo: {}".format(len(userinfo)))
-            #print("end get_user")
             await asyncio.sleep(self.sleep_time)
             if recent_best:
-                #print("get_user_best")
-                #print("username: " + username)
-                #print("gamemode: {}".format(gamemode))
                 userbest = list(await get_user_best(key, api, username, gamemode, 100))
-                #print("userbest: {}".format(len(userbest)))
-                #print("end get_user_best")
                 web = False
             else:
-                #print("get_user_recent")
-                #print("username: " + username)
-                #print("gamemode: {}".format(gamemode))
                 userrecent = list(await get_user_recent(key, api, username, gamemode))
-                #print("userrecent: {}".format(len(userrecent)))
-                #print("end get_user_recent")
         except:
             await self.bot.say("Error. Please try again later.")
             return
@@ -783,28 +767,17 @@ class Osu:
                 # get best plays map information and scores, assume length is self.osu_settings['num_best_plays']
                 best_beatmaps = []
                 best_acc = []
-                print("get_beatmap")
                 beatmap = list(await get_beatmap(key, api, beatmap_id=userbest[0]['beatmap_id']))[0]
-                print("beatmap: {}".format(beatmap))
-                print("end get_beatmap")
                 best_beatmaps = [beatmap]
                 best_acc = [calculate_acc(userbest[0], gamemode)]
                 score_num = userbest[0]['index']
 
-                print("_get_user_top")
                 msg, embed = await self._get_user_top(
                     ctx, api, userinfo, userbest, best_beatmaps, best_acc, gamemode, score_num = score_num, web = web)
-                print("end _get_user_top")
             else:
                 userrecent = userrecent[0]
-                print("userrecent: {}".format(userrecent))
-                print("_get_recent")
                 msg, embed = await self._get_recent(ctx, api, userinfo, userrecent, gamemode)
-                print("msg: {}".format(msg))
-                print("embed: {}".format(embed))
-                print("end _get_recent")
-        except Exception as e:
-            print("ERROR: {}", format(e))
+        except:
             await self.bot.say("**`{}` was not found or no recent plays in `{}`.**(exception 2)".format(username, get_gamemode(gamemode)))
             return
 
@@ -2174,9 +2147,10 @@ class Osu:
         em.description = desc
         em.set_author(name="{} – {} by {}".format(beatmap[0]['artist'], beatmap[0]['title'], beatmap[0]['creator']), url=beatmap_url)
         soup = await get_web(beatmap_url)
-        map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
-        map_image_url = 'http:{}'.format(map_image[0]).replace(" ", "%")
-        em.set_thumbnail(url=map_image_url)
+        #map_image = [x['src'] for x in soup.findAll('img', {'class': 'bmt'})]
+        #map_image_url = 'http:{}'.format(map_image[0]).replace(" ", "%")
+        #em.set_thumbnail(url=map_image_url)
+        em.set_thumbnail(url="https://share.lucker.xyz/img/unknown.png")
         if oppai_info and 'graph_url' in oppai_info:
             em.set_image(url=oppai_info['graph_url'])
 
@@ -3508,76 +3482,40 @@ async def get_scores(key, api:str, beatmap_id, user_id, mode, session = None):
     return await fetch(url, session)
 
 async def get_user(key, api:str, user_id, mode, session = None, no_cache = False):
-    print("===get_user===")
     if not no_cache:
         userinfo = await get_user_db(user_id, mode)
         if userinfo:
             return userinfo
 
-    #print("key: {}".format(key))
-    #print("api: {}".format(api))
-    #print("user_id: {}".format(user_id))
-    #print("mode: {}".format(mode))
-    #print("limit: " + limit)
-    #print("session: " + session)
-    #print("no_cache: " + no_cache)
-
     url_params = []
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
-    #for p in url_params: print(p)
-    #print("url_params" + url_params)
     url = build_request(url_params, "https://{}/api/get_user?".format(api))
-    print("url: {}".format(url))
-    print("===end get_user===")
     return await fetch(url, session)
 
 async def get_user_best(key, api:str, user_id, mode, limit, session = None, no_cache = False):
-    #print("===get_user_best===")
     if not no_cache:
         userbest = await get_user_best_db(user_id, mode, limit)
         if userbest:
             return userbest
-
-    #print("key: " + key)
-    #print("api: " + api)
-    #print("user_id" + user_id)
-    #print("mode: " + mode)
-    #print("limit: " + limit)
-    #print("session: " + session)
-    #print("no_cache: " + no_cache)
-
 
     url_params = []
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
     url_params.append(parameterize_limit(limit))
-    #print(url_params)
     url = build_request(url_params, "https://{}/api/get_user_best?".format(api))
-    #print(url)
     return await fetch(url, session)
 
 # Returns the user's ten most recent plays.
 async def get_user_recent(key, api:str, user_id, mode, session = None):
-    print("===get_user_recent===")
-    print("key: {}".format(key))
-    print("api: {}".format(api))
-    print("user_id: {}".format(user_id))
-    print("mode: {}".format(mode))
-    #print("session: " + session)
-
     url_params = []
 
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
-    #print("url_params: " + url_params)
-    #for p in url_params: print(p)
     url = build_request(url_params, "https://{}/api/get_user_recent?".format(api))
-    print("url: {}".format(url))
-    print("===end get_user_recent===")
     return await fetch(url, session)
 
 async def fetch(url, session):
