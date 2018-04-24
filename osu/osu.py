@@ -1337,7 +1337,7 @@ class Osu:
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(map_image))
+        print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
@@ -2157,7 +2157,7 @@ class Osu:
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(map_image))
+        print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
@@ -2915,7 +2915,7 @@ class Tracking:
         soup = await get_web(beatmap_url)
         print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(map_image))
+        print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
         else:
