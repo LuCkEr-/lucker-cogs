@@ -1799,7 +1799,7 @@ class Osu:
                     if server_options and server_options['graph_screenshot']:
                         include_graph = True
                     print("server_options: {}".format(server_options))
-                    print("server_options['graph_screenshot']: {}".format(server_options['graph_screenshot']))
+                    #print("server_options['graph_screenshot']: {}".format(server_options['graph_screenshot']))
                     print("include_graph: {}".format(include_graph))
                 else:
                     beatmap_info = None
