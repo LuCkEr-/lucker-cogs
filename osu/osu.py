@@ -1798,9 +1798,6 @@ class Osu:
                     include_graph = False # default is true
                     if server_options and server_options['graph_screenshot']:
                         include_graph = True
-                    print("server_options: {}".format(server_options))
-                    #print("server_options['graph_screenshot']: {}".format(server_options['graph_screenshot']))
-                    print("include_graph: {}".format(include_graph))
                 else:
                     beatmap_info = None
             else: # catch all case
@@ -3917,7 +3914,8 @@ async def plot_map_stars(beatmap, mods, imgur):
     star_list, speed_list, aim_list, time_list = [], [], [], []
     print("beatmap: {}".format(beatmap))
     print("mods: {}".format(mods))
-    results = oppai(beatmap, mods=mods)
+    #results = oppai(beatmap, mods=mods)
+    results = oppai(beatmap)
     for chunk in results:
         time_list.append(chunk['time'])
         star_list.append(chunk['stars'])
