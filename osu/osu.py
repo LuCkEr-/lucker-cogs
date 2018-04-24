@@ -1339,7 +1339,7 @@ class Osu:
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
-            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
+            map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
@@ -2159,7 +2159,7 @@ class Osu:
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
-            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
+            map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
@@ -2917,7 +2917,7 @@ class Tracking:
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
         print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
-            map_image_url = 'http:{}'.format(map_image['covers']['list@2x'])
+            map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
         print("map_image_url: {}".format(map_image_url))
