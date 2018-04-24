@@ -47,7 +47,7 @@ class Statuses:
                     'Don\'t let him fool you', 'Read a wikipedia page', 'Wikileaks will fuck you ↑',
                     'Choking on the blue pill', 'Traps are gay',
                     'Beating a nerd to death',
-                    'GNU/Linux'
+                    'GNU/Linux', 'blowing trap dicks'
                 ]
 
                 status = randint(0, len(statuses) - 1)
