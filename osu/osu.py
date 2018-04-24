@@ -1798,6 +1798,9 @@ class Osu:
                     include_graph = False # default is true
                     if server_options and server_options['graph_screenshot']:
                         include_graph = True
+                    print("server_options: {}".format(server_options))
+                    print("server_options['graph_screenshot']: {}".format(server_options['graph_screenshot']))
+                    print("include_graph: {}".format(include_graph))
                 else:
                     beatmap_info = None
             else: # catch all case
@@ -3705,7 +3708,7 @@ async def get_pyoppai(map_id:str, accs=[100], mods=0, misses=0, combo=None, comp
 
     if plot:
         pyoppai_json['graph_url'] = await plot_map_stars(file_path, mods, imgur)
-        # print(pyoppai_json['graph_url'])
+        print(pyoppai_json['graph_url'])
 
     os.remove(file_path)
     return pyoppai_json
