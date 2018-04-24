@@ -3912,6 +3912,8 @@ async def download_file(url, filename):
 async def plot_map_stars(beatmap, mods, imgur):
     #try:
     star_list, speed_list, aim_list, time_list = [], [], [], []
+    print("beatmap: {}".format(beatmap))
+    print("mods: {}".format(mods))
     results = oppai(beatmap, mods=mods)
     for chunk in results:
         time_list.append(chunk['time'])
