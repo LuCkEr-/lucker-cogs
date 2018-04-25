@@ -18,7 +18,7 @@ class Spank:
             return
 
         msg = [
-            "{} is enduring the lash of {}s spanking!".format(author.mention, user.mention),
+            "{} is enduring the lash of {}s spanking!".format(user.mention, author.mention),
             "{} spanks {}".format(author.mention, user.mention),
             "{} gets spanked by {}".format(user.mention, author.mention)
             ]
