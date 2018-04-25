@@ -1335,14 +1335,14 @@ class Osu:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
-        print("beatmap_url: {}".format(beatmap_url))
+        #print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(len(map_image)))
+        #print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
-        print("map_image_url: {}".format(map_image_url))
+        #print("map_image_url: {}".format(map_image_url))
 
         em = discord.Embed(description=info, colour=server_user.colour)
         em.set_author(name="{} [{}] +{} [{}★]".format(beatmap['title'], beatmap['version'],
@@ -2155,14 +2155,14 @@ class Osu:
         em.description = desc
         em.set_author(name="{} – {} by {}".format(beatmap[0]['artist'], beatmap[0]['title'], beatmap[0]['creator']), url=beatmap_url)
         soup = await get_web(beatmap_url)
-        print("beatmap_url: {}".format(beatmap_url))
+        #print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(len(map_image)))
+        #print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
-        print("map_image_url: {}".format(map_image_url))
+        #print("map_image_url: {}".format(map_image_url))
         em.set_thumbnail(url=map_image_url)
         if oppai_info and 'graph_url' in oppai_info:
             em.set_image(url=oppai_info['graph_url'])
@@ -2913,14 +2913,14 @@ class Tracking:
 
         # grab beatmap image
         soup = await get_web(beatmap_url)
-        print("beatmap_url: {}".format(beatmap_url))
+        #print("beatmap_url: {}".format(beatmap_url))
         map_image = json.loads(soup.find('script', {'id': 'json-beatmapset'}).get_text())
-        print("map_image: {}".format(len(map_image)))
+        #print("map_image: {}".format(len(map_image)))
         if map_image['covers']['list@2x']:
             map_image_url = map_image['covers']['list@2x']
         else:
             map_image_url = "https://share.lucker.xyz/img/unknown.png"
-        print("map_image_url: {}".format(map_image_url))
+        #print("map_image_url: {}".format(map_image_url))
         em.set_thumbnail(url=map_image_url)
         em.set_author(name="New #{} for {} in {}".format(top_play_num, new_user_info['username'], gamemode), icon_url = profile_url, url = user_url)
 
@@ -3912,11 +3912,8 @@ async def download_file(url, filename):
 async def plot_map_stars(beatmap, mods, imgur):
     #try:
     star_list, speed_list, aim_list, time_list = [], [], [], []
-    print("beatmap: {}".format(beatmap))
-    print("mods: {}".format(mods))
     #results = oppai(beatmap, mods=mods)
     results = oppai(beatmap)
-    print("results: {}".format(results))
     for chunk in results:
         time_list.append(chunk['time'])
         star_list.append(chunk['stars'])
