@@ -9,7 +9,7 @@ class Spank:
 
     @commands.command(pass_context=True, no_pm=True)
     async def spank(self, ctx, user: discord.Member):
-        """Spank someone"""
+        """Spank your favorite person!"""
 
         author = ctx.message.author
 
