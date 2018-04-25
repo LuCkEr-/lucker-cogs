@@ -3916,6 +3916,7 @@ async def plot_map_stars(beatmap, mods, imgur):
     print("mods: {}".format(mods))
     #results = oppai(beatmap, mods=mods)
     results = oppai(beatmap)
+    print("results: {}".format(results))
     for chunk in results:
         time_list.append(chunk['time'])
         star_list.append(chunk['stars'])
