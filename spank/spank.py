@@ -87,6 +87,20 @@ class Spank:
             ":head_bandage:",
             ":sleeping:"
             ]
+        
+        emotes_HF = [
+            ":lovelyeyes:",
+            ":KotoAngery:",
+            ":Hush:",
+            ":FbladeYaranaika:",
+            ":FbladeEyes2:",
+            ":FbladeEyes:",
+            ":crash: "
+            ]
+
+        if ctx.server.id == "372058904818876428":
+            for emote in emotes_HF:
+                emotes.append(emote)
 
         msg = [
             "{} is enduring the lash of {}s spanking!".format(user.mention, author.mention),
