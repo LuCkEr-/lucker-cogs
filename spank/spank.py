@@ -98,7 +98,7 @@ class Spank:
             ":crash: "
             ]
 
-        if ctx.server.id == "372058904818876428":
+        if ctx.message.server.id == "372058904818876428":
             for emote in emotes_HF:
                 emotes.append(emote)
 
