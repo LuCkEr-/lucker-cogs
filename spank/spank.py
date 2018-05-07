@@ -102,14 +102,15 @@ class Spank:
             for emote in emotes_HF:
                 emotes.append(emote)
 
-        msg = [
-            "{} is enduring the lash of {}s spanking!".format(user.mention, author.mention),
-            "{} spanks {}".format(author.mention, user.mention),
-            "{} gets spanked by {}".format(user.mention, author.mention),
-            ":hand_splayed: :sweat_drops: {}".format(emotes[randint(0, len(emotes) - 1)])
-            ]
+        #msg = [
+        #    "{} is enduring the lash of {}s spanking!".format(user.mention, author.mention),
+        #    "{} spanks {}".format(author.mention, user.mention),
+        #    "{} gets spanked by {}".format(user.mention, author.mention),
+        #    ":hand_splayed: :sweat_drops: {}".format(emotes[randint(0, len(emotes) - 1)])
+        #    ]
 
-        await self.bot.say(msg[randint(0, len(msg) - 1)])
+        #await self.bot.say(msg[randint(0, len(msg) - 1)])
+        await self.bot.say(":hand_splayed: :sweat_drops: {}".format(emotes[randint(0, len(emotes) - 1)]))
 ### ---------------------------- Setup ---------------------------------- ###
 def setup(bot):
     bot.add_cog(Spank(bot))
