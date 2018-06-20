@@ -1145,14 +1145,20 @@ class Osu:
 
         if api == self.osu_settings["type"]["default"]:
             time_url = "https://osu.ppy.sh/u/{}".format(user['user_id'])
+            print('time_url: {}'.format(time_url))
             soup = await get_web(time_url)
             timestamps = []
             for tag in soup.findAll(attrs={'class': 'timeago'}):
                 timestamps.append(datetime.datetime.strptime(tag.contents[0].strip().replace(" UTC", ""), '%Y-%m-%d %H:%M:%S'))
+                print('tag: {}'.format(tag.contents[0].strip().replace(" UTC", "")))
+                print('datetime: {}'.format(datetime.datetime.strptime(tag.contents[0].strip().replace(" UTC", ""), '%Y-%m-%d %H:%M:%S')))
+            print('timestamps: {}'.format(timestamps))
             if user['username'] == 'peppy':
                 timeago = time_ago(datetime.datetime.now(), timestamps[0])
             else:
                 timeago = time_ago(datetime.datetime.now(), timestamps[1])
+            print('datetime_now: {}'.format(datetime.datetime.now()))
+            print('timeago: {}'.format(timeago))
             timeago = "Last Logged in {} ago".format(timeago)
             em.set_footer(text=timeago)
         else:
