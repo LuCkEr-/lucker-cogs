@@ -3919,7 +3919,7 @@ async def plot_map_stars(beatmap, mods, imgur):
     #try:
     star_list, speed_list, aim_list, time_list = [], [], [], []
     #results = oppai(beatmap, mods=mods)
-    print('beatmap: {}'.format(Beatmap))
+    print('beatmap: {}'.format(beatmap))
     results = oppai(beatmap)
     print('results: {}'.format(json.dumps(results, indent=4, sort_keys=True)))
     for chunk in results:
