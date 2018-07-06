@@ -34,7 +34,6 @@ class Meme:
 
         em = discord.Embed(title=meme.title, url=meme.permalink)
         em.set_image(url=meme.url)
-        em.timestamp()
         await self.bot.say(embed = em)
 
 ### ---------------------------- Setup ---------------------------------- ###
