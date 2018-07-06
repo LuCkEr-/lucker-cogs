@@ -3,5 +3,8 @@
     "INSTALL_MSG": "Enjoy!",
     "NAME": "meme",
     "SHORT": "Gets memes from reddit!",
+    "REQUIREMENTS": [
+        "praw"
+    ],
     "DESCRIPTION": "Gets memes from a subreddit and displays them."
 }
