@@ -40,7 +40,7 @@ class Meme:
             await self.bot.say("Could not find anything in {} subreddit :(".format(args))
             return
 
-        meme = memes[randint(0, len(memes) - 1]
+        meme = memes[randint(0, len(memes) - 1)]
 
         em = discord.Embed(title=meme.title, url=meme.shortlink)
         em.set_image(url=meme.url)
