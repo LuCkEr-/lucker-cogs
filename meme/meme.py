@@ -34,6 +34,10 @@ class Meme:
             args = args[0]
 
         submissions = self.reddit.subreddit(args).hot(limit=100)
+        if not submissions:
+            await self.bot.say("Could not find anything in {} subreddit :(".format(args))
+            return
+
         memes = [x for x in submissions if not x.stickied]
         meme = memes[randint(0, 100)]
 
