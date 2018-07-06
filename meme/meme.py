@@ -30,7 +30,14 @@ class Meme:
 
         submissions = self.reddit.subreddit('memes').hot(limit=100)
         memes = [x for x in submissions if not x.stickied]
-        await self.bot.say(memes[randint(0, 100)].url)
+        meme = memes[randint(0, 100)]
+
+        em = discord.Embed(description='', colour=user.colour)
+        em.title(meme.title)
+        em.set_image(meme.url)
+        em.timestamp()
+        em.url(meme.permalink)
+        await self.bot.say(embed = em)
 
 ### ---------------------------- Setup ---------------------------------- ###
 def setup(bot):
