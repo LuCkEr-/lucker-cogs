@@ -30,7 +30,7 @@ class Meme:
 
         if not args:
             args = 'memes'
-        else
+        else:
             args = args[0]
 
         submissions = self.reddit.subreddit(args).hot(limit=100)
