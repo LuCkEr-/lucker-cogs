@@ -32,11 +32,9 @@ class Meme:
         memes = [x for x in submissions if not x.stickied]
         meme = memes[randint(0, 100)]
 
-        em = discord.Embed(description='', colour=user.colour)
-        em.title(meme.title)
-        em.set_image(meme.url)
+        em = discord.Embed(title=meme.title, url=meme.permalink)
+        em.set_image(url=meme.url)
         em.timestamp()
-        em.url(meme.permalink)
         await self.bot.say(embed = em)
 
 ### ---------------------------- Setup ---------------------------------- ###
