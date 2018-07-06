@@ -25,7 +25,7 @@ class Meme:
 
 
     @commands.command(pass_context=True, no_pm=True)
-    async def meme(self, ctx, args):
+    async def meme(self, ctx, *args : str):
         """Displays a random meme from Reddit!"""
 
         if not args:
