@@ -34,17 +34,17 @@ class Meme:
             args = args[0]
 
         submissions = self.reddit.subreddit(args).hot(limit=100)
-        if not submissions:
+        memes = [x for x in submissions if not x.stickied]
+
+        if not memes:
             await self.bot.say("Could not find anything in {} subreddit :(".format(args))
             return
 
-        memes = [x for x in submissions if not x.stickied]
-        print("memes: {}".format(memes))
-        print(memes)
-        meme = memes[randint(0, memes.lenght)]
+        meme = memes[randint(0, len(memes) - 1]
 
         em = discord.Embed(title=meme.title, url=meme.shortlink)
         em.set_image(url=meme.url)
+
         await self.bot.say(embed = em)
 
 ### ---------------------------- Setup ---------------------------------- ###
