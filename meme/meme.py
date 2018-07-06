@@ -31,6 +31,8 @@ class Meme:
         if not args:
             args = 'memes'
 
+        print("args: {}".format(args))
+
         submissions = self.reddit.subreddit(args).hot(limit=100)
         memes = [x for x in submissions if not x.stickied]
         meme = memes[randint(0, 100)]
