@@ -39,7 +39,9 @@ class Meme:
             return
 
         memes = [x for x in submissions if not x.stickied]
-        meme = memes[randint(0, 100)]
+        print("memes: {}".format(memes))
+        print(memes)
+        meme = memes[randint(0, memes.lenght)]
 
         em = discord.Embed(title=meme.title, url=meme.shortlink)
         em.set_image(url=meme.url)
