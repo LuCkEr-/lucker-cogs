@@ -28,8 +28,9 @@ class Meme:
     async def meme(self):
         """Displays a random meme from Reddit!"""
 
-        memes = self.reddit.subreddit('memes').hot(limit=100)
-        await self.bot.say(memes[randint(0, 100)].url)
+        submission = self.reddit.subreddit('memes').hot(limit=100)
+        memes = next(x for x in submission if not x.stickied)
+        await self.bot.say(memes.url)
 
 ### ---------------------------- Setup ---------------------------------- ###
 def setup(bot):
