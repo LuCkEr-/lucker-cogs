@@ -25,10 +25,13 @@ class Meme:
 
 
     @commands.command(pass_context=True, no_pm=True)
-    async def meme(self):
+    async def meme(self, ctx, *, args):
         """Displays a random meme from Reddit!"""
 
-        submissions = self.reddit.subreddit('memes').hot(limit=100)
+        if not args:
+            args = 'memes'
+
+        submissions = self.reddit.subreddit(args).hot(limit=100)
         memes = [x for x in submissions if not x.stickied]
         meme = memes[randint(0, 100)]
 
