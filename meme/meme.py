@@ -21,7 +21,7 @@ class Meme:
                      user_agent='Helix by LuCkEr',
                      username='Helix')
 
-
+    @commands.cooldown(1, 60, commands.BucketType.user)
     @commands.command(pass_context=True, no_pm=True)
     async def meme(self, ctx, *args : int):
         """Displays a random meme from Reddit!"""
