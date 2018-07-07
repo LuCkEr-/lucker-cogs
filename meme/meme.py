@@ -1,7 +1,6 @@
 import os
 import discord
 from discord.ext import commands
-from __main__ import send_cmd_help
 from random import randint
 import asyncio
 import praw
@@ -16,7 +15,6 @@ class Meme:
         self.bot = bot
 
         settings = dataIO.load_json("data/meme/settings.json")
-        #self.settings = defaultdict(dict, settings)
 
         self.reddit = praw.Reddit(client_id=settings["client_id"],
                      client_secret=settings["client_secret"],
@@ -25,27 +23,47 @@ class Meme:
 
 
     @commands.command(pass_context=True, no_pm=True)
-    async def meme(self, ctx, *args : str):
+    async def meme(self, ctx, *args : int):
         """Displays a random meme from Reddit!"""
 
         if not args:
-            args = 'memes'
+            args = 1
         else:
             args = args[0]
 
-        submissions = self.reddit.subreddit(args).hot(limit=100)
+        if args > 10:
+            await self.bot.say("Can post a maximum of 10 memes at a time")
+            return
+
+        submissions = self.reddit.subreddit("memes").hot(limit=100)
         memes = [x for x in submissions if not x.stickied]
 
         if not memes:
-            await self.bot.say("Could not find anything in {} subreddit :(".format(args))
+            await self.bot.say("Could not find anything in memes subreddit :(")
             return
 
-        meme = memes[randint(0, len(memes) - 1)]
+        if len(memes) < args:
+            await self.bot.say("There aren't enough memes available at this time :(")
+            return
 
-        em = discord.Embed(title=meme.title, url=meme.shortlink)
-        em.set_image(url=meme.url)
+        index = 0
+        random = []
+        while index < args:
+            while True:
+                randomInt = randint(0, len(memes) - 1)
+                if not randomInt in random:
+                    random.append(randomInt)
+                    break
+            index += 1
 
-        await self.bot.say(embed = em)
+        for num in random:
+            meme = memes[random[num]]
+
+            em = discord.Embed(title=meme.title, url=meme.shortlink)
+            em.set_image(url=meme.url)
+
+            await self.bot.say(embed = em)
+
 
 ### ---------------------------- Setup ---------------------------------- ###
 def setup(bot):
