@@ -4,7 +4,13 @@
     "NAME": "osu",
     "SHORT": "Gives osu! profile information for all gamemodes.",
     "REQUIREMENTS": [
-        "beautifulsoup4"
+        "beautifulsoup4",
+        "numpy",
+        "git+https://github.com/Francesco149/oppai.git@master#egg=pyoppai&subdirectory=pyoppai",
+        "pytesseract",
+        "matplotlib",
+        "osupippy",
+        "pymongo"
     ],
     "DESCRIPTION": "Gives osu! profile information for all gamemodes... what more do you want lol?"
 }
