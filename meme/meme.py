@@ -57,7 +57,7 @@ class Meme:
             index += 1
 
         for num in random:
-            meme = memes[random[num]]
+            meme = memes[num]
 
             em = discord.Embed(title=meme.title, url=meme.shortlink)
             em.set_image(url=meme.url)
