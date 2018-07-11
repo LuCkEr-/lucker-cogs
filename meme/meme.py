@@ -31,8 +31,8 @@ class Meme:
         else:
             args = args[0]
 
-        if args > 10:
-            await self.bot.say("Can post a maximum of 10 memes at a time")
+        if args > 5:
+            await self.bot.say("Can post a maximum of 5 memes at a time")
             return
 
         submissions = self.reddit.subreddit("memes").hot(limit=100)
