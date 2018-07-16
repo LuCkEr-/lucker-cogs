@@ -1,7 +1,10 @@
 import asyncio
+import os
 
 from .osu import Osu
 from .tracking import Tracking
+from redbot.core.bot import Red
+from redbot.core.utils.dataIO import fileIO
 
 
 def check_folders():
@@ -45,7 +48,7 @@ def check_files():
             "num_best_plays": 5,
             })
 
-def setup(bot):
+def setup(bot: Red):
     check_folders()
     check_files()
 

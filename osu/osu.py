@@ -1,18 +1,18 @@
-# import asyncio
-# import collections
-# import datetime
-# import json
-# import logging
-# import math
-import operator
-# import os
-import random
 # import re
 # import time
 # import urllib
 # from difflib import SequenceMatcher
 # from random import randint
 # from threading import Thread
+import operator
+# import asyncio
+# import collections
+# import datetime
+# import json
+# import logging
+# import math
+# import os
+import random
 
 # import aiohttp
 import discord
@@ -27,17 +27,20 @@ from discord.utils import find
 from imgurpython import ImgurClient
 # from matplotlib import ticker
 from PIL import Image
-# from pymongo import MongoClient
 
 # import pyoppai
 from __main__ import send_cmd_help
+
+from .common import *
+from .fetching import *
+from .helper import *
+from .utils.dataIO import fileIO
+
+# from pymongo import MongoClient
+
 # from data.osu.oppai_chunks import oppai
 # from pippy.beatmap import Beatmap
 
-from .fetching import *
-from .helper import *
-from .common import *
-from .utils.dataIO import fileIO
 
 # mpl.use('Agg') # for non gui
 
